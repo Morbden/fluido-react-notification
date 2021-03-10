@@ -1,0 +1,53 @@
+{
+  "name": "fluido-react",
+  "version": "0.1.1",
+  "description": "Fluido snackbar manager",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Morbden/fluido-react-snackbar-manager.git"
+  },
+  "keywords": [
+    "fluido",
+    "snackbar-manager",
+    "snackbar",
+    "notification",
+    "notify",
+    "react"
+  ],
+  "author": "Morbden",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "pub": "npm publish --access public"
+  },
+  "dependencies": {
+    "@fluido/react-components": "^0.3.6",
+    "@fluido/react-utils": "^0.1.4",
+    "classnames": "^2.2.6",
+    "deep-equal": "^2.0.5",
+    "deepmerge": "^4.2.2",
+    "react-icons": "^4.2.0",
+    "react-portal": "^4.2.1",
+    "styled-components": "^5.2.1",
+    "uid": "^2.0.0"
+  },
+  "peerDependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@hookstate/core": "^3.0.6",
+    "@hookstate/persistence": "^3.0.0",
+    "@types/classnames": "^2.2.11",
+    "@types/node": "^14.14.33",
+    "@types/react": "^17.0.3",
+    "@types/styled-components": "^5.1.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "sass": "^1.32.8",
+    "typescript": "^4.2.3"
+  }
+}
