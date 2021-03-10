@@ -1,5 +1,5 @@
 {
-  "name": "fluido-react",
+  "name": "@fluido/react-snackbar-manager",
   "version": "0.1.1",
   "description": "Fluido snackbar manager",
   "main": "dist/index.js",
