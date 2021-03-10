@@ -1,6 +1,6 @@
 {
   "name": "@fluido/react-snackbar-manager",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Fluido snackbar manager",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -24,8 +24,8 @@
     "pub": "npm publish --access public"
   },
   "dependencies": {
-    "@fluido/react-components": "^0.3.6",
-    "@fluido/react-utils": "^0.1.4",
+    "@fluido/react-components": "^0.3.7",
+    "@fluido/react-utils": "^0.1.5",
     "classnames": "^2.2.6",
     "deep-equal": "^2.0.5",
     "deepmerge": "^4.2.2",
