@@ -10,12 +10,7 @@
 /out
 /build
 /dist
-/lib
-/types
-/components
-/hooks
-/managers
-/utils
+/.storybook
 
 # misc
 .DS_Store

@@ -21,33 +21,44 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "pub": "npm publish --access public"
+    "pub": "npm publish --access public",
+    "pub:all": "run-s build pub",
+    "sb": "start-storybook -p 6006",
+    "sb:build": "build-storybook"
   },
   "dependencies": {
-    "@fluido/react-components": "^0.3.7",
-    "@fluido/react-utils": "^0.1.5",
-    "classnames": "^2.2.6",
+    "@fluido/react-components": "^0.7.2",
+    "@fluido/react-effects": "^0.2.0",
+    "@fluido/sass-styles": "^0.8.0",
+    "classnames": "^2.3.1",
     "deep-equal": "^2.0.5",
     "deepmerge": "^4.2.2",
     "react-icons": "^4.2.0",
     "react-portal": "^4.2.1",
-    "styled-components": "^5.2.1",
+    "styled-components": "^5.2.3",
     "uid": "^2.0.0"
   },
   "peerDependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@hookstate/core": "^3.0.6",
-    "@hookstate/persistence": "^3.0.0",
+    "@storybook/addon-actions": "^6.2.3",
+    "@storybook/addon-essentials": "^6.2.3",
+    "@storybook/addon-links": "^6.2.3",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/react": "^6.2.3",
     "@types/classnames": "^2.2.11",
-    "@types/node": "^14.14.33",
+    "@types/node": "^14.14.37",
     "@types/react": "^17.0.3",
-    "@types/styled-components": "^5.1.7",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "@types/styled-components": "^5.1.9",
+    "css-loader": "^5.2.0",
+    "npm-run-all": "^4.1.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "sass": "^1.32.8",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0",
     "typescript": "^4.2.3"
   }
 }

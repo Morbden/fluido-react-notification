@@ -1,60 +1,88 @@
-import { Snackbar } from '@fluido/react-components'
-import { SnackbarStateProps } from '@fluido/react-components/dist/snackbar'
-import { useMediaQuery } from '@fluido/react-utils'
-import { createState, useState } from '@hookstate/core'
-import cx from 'classnames'
+import { useMediaQuery } from '@fluido/react-effects'
+import deepmerge from 'deepmerge'
+import { createContext, useContext, useState } from 'react'
 import { uid } from 'uid'
-import { StyledSnackbarManager } from './styled'
+import { NotificationBox, NotificationContainer } from './styled'
+import Portal from 'react-portal'
 
-export interface SnackbarManagerStateProps {
-  id?: string
-  snack: SnackbarStateProps
+export interface NotificationProps {}
+
+export interface NotificationOptionsProps {
+  /** @default 'bottom-left' */
+  anchorPosition?:
+    | 'top-left'
+    | 'top-center'
+    | 'top-right'
+    | 'center-left'
+    | 'center-right'
+    | 'bottom-left'
+    | 'bottom-center'
+    | 'bottom-right'
+  /** @default false */
+  dense?: boolean
+  /** @default false */
+  fullWidth?: boolean
 }
 
-export interface SnackbarManagerProps {
-  breakpoint?: number
+interface NotificationContextProps {
+  notifications: {
+    [key: string]: NotificationProps
+  }
+  defaultOptions: NotificationOptionsProps
 }
 
-const SnackbarState = createState<SnackbarManagerStateProps[]>([])
+const NotificationContext = createContext<NotificationContextProps>(null)
 
-export const useSnackbar = () => (snack: SnackbarStateProps) => {
-  SnackbarState.merge([
+const validateOptions = (options: NotificationOptionsProps = {}) => {
+  const opt: NotificationOptionsProps = deepmerge(
     {
-      id: uid(6),
-      snack: {
-        ...snack,
-        duration: Math.floor((snack.duration || 3) * 1000),
-      },
+      anchorPosition: 'bottom-left',
+      dens: false,
+      fullWidth: false,
     },
-  ])
+    options,
+  )
+  return opt
 }
 
-const SnackbarManager: React.FunctionComponent<SnackbarManagerProps> = ({
-  breakpoint = 560,
-}) => {
-  const snackbar = useState<SnackbarManagerStateProps[]>(SnackbarState)
-  const sm = useMediaQuery(`(min-width: ${breakpoint}px)`)
+export const useNotification = () => {
+  const enqueueNotification = (
+    message: string,
+    options?: NotificationOptionsProps,
+  ) => {}
+  const closeNotification = (key: string) => {}
 
+  return { enqueueNotification, closeNotification }
+}
+
+export const NotificationProvider: React.FC<NotificationOptionsProps> = ({
+  children,
+  ...options
+}) => {
+  const defaultOptions = validateOptions(options)
+  const [notifications, setNotifications] = useState({})
+  const { anchorPosition, dense, fullWidth } = defaultOptions
   return (
-    <StyledSnackbarManager className={cx({ sm })}>
-      {snackbar.map(({ id, snack }) => {
-        const vid = id.value.toString()
-        return (
-          <Snackbar
-            key={vid}
-            snack={snack as any}
-            onClose={() => {
-              snackbar.set((ol) => {
-                const i = ol.findIndex((e) => e.id === vid)
-                ol.splice(i, 1)
-                return [].concat(ol)
-              })
-            }}
-          />
-        )
-      })}
-    </StyledSnackbarManager>
+    <NotificationContext.Provider
+      value={{
+        notifications,
+        defaultOptions,
+      }}>
+      {children}
+      {/* <Portal> */}
+      <NotificationContainer
+        anchorPosition={anchorPosition}
+        dense={dense}
+        fullWidth={fullWidth}>
+        {Array(20)
+          .fill(0)
+          .map((_, i) => (
+            <NotificationBox key={i}>
+              <div>{i}</div>
+            </NotificationBox>
+          ))}
+      </NotificationContainer>
+      {/* </Portal> */}
+    </NotificationContext.Provider>
   )
 }
-
-export default SnackbarManager
