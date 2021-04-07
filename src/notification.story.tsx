@@ -74,4 +74,21 @@ const Template: Story = (args) => (
 export const allProps = Template.bind({})
 allProps.args = {
   dense: true,
+  anchorPosition: 'bottom-left',
+}
+
+allProps.argTypes = {
+  anchorPosition: {
+    control: {
+      type: 'select',
+      options: [
+        'bottom-left',
+        'bottom-center',
+        'bottom-right',
+        'top-left',
+        'top-center',
+        'top-right',
+      ],
+    },
+  },
 }
