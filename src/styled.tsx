@@ -31,16 +31,6 @@ const variantsPosition = {
     top: 0,
     right: 0,
   },
-  'center-left': {
-    left: 0,
-    top: '50%',
-    transform: 'translateY(-50%)',
-  },
-  'center-right': {
-    right: 0,
-    top: '50%',
-    transform: 'translateY(-50%)',
-  },
   'bottom-right': {
     right: 0,
     bottom: 0,
@@ -56,20 +46,20 @@ const variantsPosition = {
   },
 }
 
-export const NotificationContainer = styled.div<NotificationContainer>`
+export const NotificationContainer = styled.ul<NotificationContainer>`
   --transition-time: 250ms ease-in-out;
   position: fixed;
   z-index: 300;
   min-height: 0;
   max-height: 100vh;
   max-width: 100vw;
-  overflow-x: hidden;
-  overflow-y: auto;
   user-select: none;
   display: flex;
   align-items: stretch;
+  margin: 0;
+  list-style: none;
   flex-direction: ${({ anchorPosition }) =>
-    anchorPosition.includes('bottom') ? 'column-reverse' : 'column'};
+    anchorPosition.includes('bottom') ? 'column' : 'column-reverse'};
   padding: ${({ dense }) => (dense ? '.5rem' : '1rem')};
   transition: width var(--transition-time), top var(--transition-time),
     right var(--transition-time), bottom var(--transition-time),
@@ -81,16 +71,11 @@ export const NotificationContainer = styled.div<NotificationContainer>`
     switch (anchorPosition) {
       case 'top-left':
       case 'bottom-left':
-      case 'center-left':
         return variantsPosition[anchorPosition]
       case 'top-center':
       case 'top-right':
         return fullWidth
           ? variantsPosition['top-left']
-          : variantsPosition[anchorPosition]
-      case 'center-right':
-        return fullWidth
-          ? variantsPosition['center-left']
           : variantsPosition[anchorPosition]
       case 'bottom-right':
       case 'bottom-center':
@@ -112,13 +97,5 @@ export const NotificationContainer = styled.div<NotificationContainer>`
         ? { paddingTop: dense ? '.5rem' : '1rem' }
         : { paddingBottom: dense ? '.5rem' : '1rem' }}
     transition: padding-top var(--transition-time), padding-bottom var(--transition-time);
-  }
-`
-
-export const NotificationBox = styled.div`
-  & > * {
-    background-color: black;
-    color: white;
-    min-height: 3rem;
   }
 `

@@ -13,16 +13,15 @@
     "skipLibCheck": true,
     "strict": false,
     "target": "ES6",
-    "outDir": "dist"
+    "outDir": "dist",
+    "rootDir": "src"
   },
-  "exclude": ["node_modules", "src/**/*.story.*"],
+  "exclude": ["node_modules", "src/**/*.story.*", "types/**/*"],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.js",
     "src/**/*.jsx",
-    "src/**/*.json",
-    "src/**/*.css",
-    "src/**/*.scss"
+    "src/**/*.json"
   ]
 }
