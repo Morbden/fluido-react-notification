@@ -9,7 +9,7 @@ export const validateProviderOptions = (
 ) => {
   const opt: NotificationProviderOptionsProps = deepmerge(
     {
-      anchorPosition: 'bottom-right',
+      anchorPosition: 'bottom-left',
       dens: false,
       fullWidth: false,
       animation: 'slide',
