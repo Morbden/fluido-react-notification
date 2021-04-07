@@ -73,10 +73,9 @@ export const useNotification = () => {
       const nc = c + 1
       return nc >= Number.MAX_SAFE_INTEGER ? 0 : nc
     })
+    const newKey = counter.value.toString().padStart(8, '0')
 
     notifications.set((m) => {
-      const newKey = counter.value.toString().padStart(8, '0')
-
       const newMap: NotificationPropsMap = {
         ...m,
         [newKey]: {
@@ -101,6 +100,7 @@ export const useNotification = () => {
 
       return newMap
     })
+    return newKey
   }
 
   return { enqueueNotification, closeNotification }
